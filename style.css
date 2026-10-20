@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f4f4;
+  color: #202020;
+  font-family: "Press Start 2P", monospace;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.stage {
+  width: 100%;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+canvas {
+  display: block;
+  width: min(900px, 100%);
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  touch-action: none;
+  outline: none;
+}
+
+.hint {
+  margin: 0;
+  font-size: 8px;
+  line-height: 1.8;
+  text-align: center;
+  color: #8c8c8c;
+  letter-spacing: 0.5px;
+}
+
+/* Botón de disparo: solo aparece en pantallas táctiles */
+.fire-btn {
+  display: none;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 14px 28px;
+  border: 0;
+  background: #202020;
+  color: #f4f4f4;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+}
+
+@media (pointer: coarse) {
+  .fire-btn {
+    display: block;
+  }
+}
+
+.error {
+  margin: 0;
+  max-width: 640px;
+  font-size: 8px;
+  line-height: 1.8;
+  text-align: center;
+  color: #202020;
+  border: 2px solid #202020;
+  padding: 10px 14px;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.error[hidden] {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .hint {
+    font-size: 7px;
+  }
+}

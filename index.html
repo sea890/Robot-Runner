@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bit Runner</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="stage">
+    <canvas id="game" width="600" height="150" aria-label="Juego Bit Runner"></canvas>
+    <p class="hint">ESPACIO / &uarr; SALTAR &nbsp;&middot;&nbsp; &darr; AGACHARSE &nbsp;&middot;&nbsp; &rarr; DISPARAR &nbsp;&middot;&nbsp; M SONIDO</p>
+    <button id="fire" class="fire-btn" type="button">DISPARAR</button>
+    <p id="error" class="error" hidden></p>
+    <noscript><p class="error">Activa JavaScript en tu navegador para jugar.</p></noscript>
+  </main>
+
+  <!-- Aviso en pantalla si game.js no carga o falla -->
+  <script>
+    window.addEventListener('error', function (e) {
+      var box = document.getElementById('error');
+      if (!box) return;
+      var t = e.target;
+      if (t && t !== window && t.tagName) {
+        // Falla al cargar un recurso: solo avisamos si es un script
+        if (t.tagName !== 'SCRIPT') return;
+        box.textContent = 'NO SE PUDO CARGAR "' + t.getAttribute('src') +
+          '". REVISA QUE ESTE EN LA MISMA CARPETA QUE index.html Y SE LLAME EXACTAMENTE ASI.';
+      } else {
+        var msg = e.message && e.message !== 'Script error.' ? ': ' + e.message : '';
+        box.textContent = 'ERROR EN EL JUEGO' + msg +
+          '. ABRE LA CONSOLA (F12) PARA VER EL DETALLE.';
+      }
+      box.hidden = false;
+    }, true);
+  </script>
+
+  <script src="game.js"></script>
+</body>
+</html>
